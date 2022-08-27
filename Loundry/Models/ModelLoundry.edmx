@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="loundryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Jenis_Pakaian">
+          <Key>
+            <PropertyRef Name="ID_Jenis_Pakaian" />
+          </Key>
+          <Property Name="ID_Jenis_Pakaian" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Pakaian" Type="varchar" MaxLength="30" />
+          <Property Name="Harga" Type="int" />
+        </EntityType>
+        <EntityType Name="Loundry">
+          <Key>
+            <PropertyRef Name="ID_Loundry" />
+          </Key>
+          <Property Name="ID_Loundry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tgl_Masuk" Type="datetime" />
+          <Property Name="Tgl_Keluar" Type="datetime" />
+          <Property Name="Berat" Type="int" />
+          <Property Name="ID_Pelanggan" Type="int" />
+          <Property Name="ID_Jenis_Pakaian" Type="int" />
+          <Property Name="ID_Pewangi" Type="int" />
+          <Property Name="ID_Paket" Type="int" />
+        </EntityType>
+        <EntityType Name="Paket">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+          </Key>
+          <Property Name="ID_Paket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Paket" Type="varchar" MaxLength="30" />
+          <Property Name="Harga" Type="int" />
+        </EntityType>
+        <EntityType Name="Pelanggan">
+          <Key>
+            <PropertyRef Name="ID_Pelanggan" />
+          </Key>
+          <Property Name="ID_Pelanggan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_pelanggan" Type="varchar" MaxLength="30" />
+          <Property Name="alamat" Type="varchar" MaxLength="50" />
+          <Property Name="no_hp" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="Pewangi">
+          <Key>
+            <PropertyRef Name="ID_Pewangi" />
+          </Key>
+          <Property Name="ID_Pewangi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Pewangi" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_Loundry_Jenis_Pakaian">
+          <End Role="Jenis_Pakaian" Type="Self.Jenis_Pakaian" Multiplicity="0..1" />
+          <End Role="Loundry" Type="Self.Loundry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jenis_Pakaian">
+              <PropertyRef Name="ID_Jenis_Pakaian" />
+            </Principal>
+            <Dependent Role="Loundry">
+              <PropertyRef Name="ID_Jenis_Pakaian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Loundry_Paket">
+          <End Role="Paket" Type="Self.Paket" Multiplicity="0..1" />
+          <End Role="Loundry" Type="Self.Loundry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paket">
+              <PropertyRef Name="ID_Paket" />
+            </Principal>
+            <Dependent Role="Loundry">
+              <PropertyRef Name="ID_Paket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Loundry_Pelanggan">
+          <End Role="Pelanggan" Type="Self.Pelanggan" Multiplicity="0..1" />
+          <End Role="Loundry" Type="Self.Loundry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pelanggan">
+              <PropertyRef Name="ID_Pelanggan" />
+            </Principal>
+            <Dependent Role="Loundry">
+              <PropertyRef Name="ID_Pelanggan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Loundry_Pewangi">
+          <End Role="Pewangi" Type="Self.Pewangi" Multiplicity="0..1" />
+          <End Role="Loundry" Type="Self.Loundry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pewangi">
+              <PropertyRef Name="ID_Pewangi" />
+            </Principal>
+            <Dependent Role="Loundry">
+              <PropertyRef Name="ID_Pewangi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="loundryModelStoreContainer">
+          <EntitySet Name="Jenis_Pakaian" EntityType="Self.Jenis_Pakaian" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Loundry" EntityType="Self.Loundry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paket" EntityType="Self.Paket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pelanggan" EntityType="Self.Pelanggan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pewangi" EntityType="Self.Pewangi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Loundry_Jenis_Pakaian" Association="Self.FK_Loundry_Jenis_Pakaian">
+            <End Role="Jenis_Pakaian" EntitySet="Jenis_Pakaian" />
+            <End Role="Loundry" EntitySet="Loundry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Loundry_Paket" Association="Self.FK_Loundry_Paket">
+            <End Role="Paket" EntitySet="Paket" />
+            <End Role="Loundry" EntitySet="Loundry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Loundry_Pelanggan" Association="Self.FK_Loundry_Pelanggan">
+            <End Role="Pelanggan" EntitySet="Pelanggan" />
+            <End Role="Loundry" EntitySet="Loundry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Loundry_Pewangi" Association="Self.FK_Loundry_Pewangi">
+            <End Role="Pewangi" EntitySet="Pewangi" />
+            <End Role="Loundry" EntitySet="Loundry" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="loundryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Jenis_Pakaian">
+          <Key>
+            <PropertyRef Name="ID_Jenis_Pakaian" />
+          </Key>
+          <Property Name="ID_Jenis_Pakaian" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Pakaian" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Harga" Type="Int32" />
+          <NavigationProperty Name="Loundries" Relationship="Self.FK_Loundry_Jenis_Pakaian" FromRole="Jenis_Pakaian" ToRole="Loundry" />
+        </EntityType>
+        <EntityType Name="Loundry">
+          <Key>
+            <PropertyRef Name="ID_Loundry" />
+          </Key>
+          <Property Name="ID_Loundry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tgl_Masuk" Type="DateTime" Precision="3" />
+          <Property Name="Tgl_Keluar" Type="DateTime" Precision="3" />
+          <Property Name="Berat" Type="Int32" />
+          <Property Name="ID_Pelanggan" Type="Int32" />
+          <Property Name="ID_Jenis_Pakaian" Type="Int32" />
+          <Property Name="ID_Pewangi" Type="Int32" />
+          <Property Name="ID_Paket" Type="Int32" />
+          <NavigationProperty Name="Jenis_Pakaian" Relationship="Self.FK_Loundry_Jenis_Pakaian" FromRole="Loundry" ToRole="Jenis_Pakaian" />
+          <NavigationProperty Name="Paket" Relationship="Self.FK_Loundry_Paket" FromRole="Loundry" ToRole="Paket" />
+          <NavigationProperty Name="Pelanggan" Relationship="Self.FK_Loundry_Pelanggan" FromRole="Loundry" ToRole="Pelanggan" />
+          <NavigationProperty Name="Pewangi" Relationship="Self.FK_Loundry_Pewangi" FromRole="Loundry" ToRole="Pewangi" />
+        </EntityType>
+        <EntityType Name="Paket">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+          </Key>
+          <Property Name="ID_Paket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Paket" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Harga" Type="Int32" />
+          <NavigationProperty Name="Loundries" Relationship="Self.FK_Loundry_Paket" FromRole="Paket" ToRole="Loundry" />
+        </EntityType>
+        <EntityType Name="Pelanggan">
+          <Key>
+            <PropertyRef Name="ID_Pelanggan" />
+          </Key>
+          <Property Name="ID_Pelanggan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_pelanggan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="no_hp" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Loundries" Relationship="Self.FK_Loundry_Pelanggan" FromRole="Pelanggan" ToRole="Loundry" />
+        </EntityType>
+        <EntityType Name="Pewangi">
+          <Key>
+            <PropertyRef Name="ID_Pewangi" />
+          </Key>
+          <Property Name="ID_Pewangi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Pewangi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Loundries" Relationship="Self.FK_Loundry_Pewangi" FromRole="Pewangi" ToRole="Loundry" />
+        </EntityType>
+        <Association Name="FK_Loundry_Jenis_Pakaian">
+          <End Role="Jenis_Pakaian" Type="Self.Jenis_Pakaian" Multiplicity="0..1" />
+          <End Role="Loundry" Type="Self.Loundry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jenis_Pakaian">
+              <PropertyRef Name="ID_Jenis_Pakaian" />
+            </Principal>
+            <Dependent Role="Loundry">
+              <PropertyRef Name="ID_Jenis_Pakaian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Loundry_Paket">
+          <End Role="Paket" Type="Self.Paket" Multiplicity="0..1" />
+          <End Role="Loundry" Type="Self.Loundry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paket">
+              <PropertyRef Name="ID_Paket" />
+            </Principal>
+            <Dependent Role="Loundry">
+              <PropertyRef Name="ID_Paket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Loundry_Pelanggan">
+          <End Role="Pelanggan" Type="Self.Pelanggan" Multiplicity="0..1" />
+          <End Role="Loundry" Type="Self.Loundry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pelanggan">
+              <PropertyRef Name="ID_Pelanggan" />
+            </Principal>
+            <Dependent Role="Loundry">
+              <PropertyRef Name="ID_Pelanggan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Loundry_Pewangi">
+          <End Role="Pewangi" Type="Self.Pewangi" Multiplicity="0..1" />
+          <End Role="Loundry" Type="Self.Loundry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pewangi">
+              <PropertyRef Name="ID_Pewangi" />
+            </Principal>
+            <Dependent Role="Loundry">
+              <PropertyRef Name="ID_Pewangi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="loundryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Jenis_Pakaian" EntityType="Self.Jenis_Pakaian" />
+          <EntitySet Name="Loundries" EntityType="Self.Loundry" />
+          <EntitySet Name="Pakets" EntityType="Self.Paket" />
+          <EntitySet Name="Pelanggans" EntityType="Self.Pelanggan" />
+          <EntitySet Name="Pewangis" EntityType="Self.Pewangi" />
+          <AssociationSet Name="FK_Loundry_Jenis_Pakaian" Association="Self.FK_Loundry_Jenis_Pakaian">
+            <End Role="Jenis_Pakaian" EntitySet="Jenis_Pakaian" />
+            <End Role="Loundry" EntitySet="Loundries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Loundry_Paket" Association="Self.FK_Loundry_Paket">
+            <End Role="Paket" EntitySet="Pakets" />
+            <End Role="Loundry" EntitySet="Loundries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Loundry_Pelanggan" Association="Self.FK_Loundry_Pelanggan">
+            <End Role="Pelanggan" EntitySet="Pelanggans" />
+            <End Role="Loundry" EntitySet="Loundries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Loundry_Pewangi" Association="Self.FK_Loundry_Pewangi">
+            <End Role="Pewangi" EntitySet="Pewangis" />
+            <End Role="Loundry" EntitySet="Loundries" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="loundryModelStoreContainer" CdmEntityContainer="loundryEntities">
+          <EntitySetMapping Name="Jenis_Pakaian">
+            <EntityTypeMapping TypeName="loundryModel.Jenis_Pakaian">
+              <MappingFragment StoreEntitySet="Jenis_Pakaian">
+                <ScalarProperty Name="ID_Jenis_Pakaian" ColumnName="ID_Jenis_Pakaian" />
+                <ScalarProperty Name="Nama_Pakaian" ColumnName="Nama_Pakaian" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loundries">
+            <EntityTypeMapping TypeName="loundryModel.Loundry">
+              <MappingFragment StoreEntitySet="Loundry">
+                <ScalarProperty Name="ID_Loundry" ColumnName="ID_Loundry" />
+                <ScalarProperty Name="Tgl_Masuk" ColumnName="Tgl_Masuk" />
+                <ScalarProperty Name="Tgl_Keluar" ColumnName="Tgl_Keluar" />
+                <ScalarProperty Name="Berat" ColumnName="Berat" />
+                <ScalarProperty Name="ID_Pelanggan" ColumnName="ID_Pelanggan" />
+                <ScalarProperty Name="ID_Jenis_Pakaian" ColumnName="ID_Jenis_Pakaian" />
+                <ScalarProperty Name="ID_Pewangi" ColumnName="ID_Pewangi" />
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pakets">
+            <EntityTypeMapping TypeName="loundryModel.Paket">
+              <MappingFragment StoreEntitySet="Paket">
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+                <ScalarProperty Name="Nama_Paket" ColumnName="Nama_Paket" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pelanggans">
+            <EntityTypeMapping TypeName="loundryModel.Pelanggan">
+              <MappingFragment StoreEntitySet="Pelanggan">
+                <ScalarProperty Name="ID_Pelanggan" ColumnName="ID_Pelanggan" />
+                <ScalarProperty Name="nama_pelanggan" ColumnName="nama_pelanggan" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pewangis">
+            <EntityTypeMapping TypeName="loundryModel.Pewangi">
+              <MappingFragment StoreEntitySet="Pewangi">
+                <ScalarProperty Name="ID_Pewangi" ColumnName="ID_Pewangi" />
+                <ScalarProperty Name="Nama_Pewangi" ColumnName="Nama_Pewangi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

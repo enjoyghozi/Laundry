@@ -1,0 +1,40 @@
+﻿@model Loundry.Models.Jenis_Pakaian
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Apakah kamu ingin menghapus jenis pakaian ini?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Jenis Nama Pakaian")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nama_Pakaian)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Harga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Harga)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Hapus" class="btn btn-default" /> |
+            @Html.ActionLink("Kembali ke daftar", "Index")
+        </div>
+    }
+</div>

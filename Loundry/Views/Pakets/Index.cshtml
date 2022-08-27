@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Loundry.Models.Paket>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Material_Lite.cshtml";
+    ViewBag.title = "Paket";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nama Paket")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Harga)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nama_Paket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Harga)
+        </td>
+        <td>
+            @Html.ActionLink("Ubah", "Edit", new { id=item.ID_Paket }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Paket }) |
+            @Html.ActionLink("Hapus", "Delete", new { id=item.ID_Paket })
+        </td>
+    </tr>
+}
+
+</table>

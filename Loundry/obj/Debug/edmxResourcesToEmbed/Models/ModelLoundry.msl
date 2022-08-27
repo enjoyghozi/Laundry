@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="loundryModelStoreContainer" CdmEntityContainer="loundryEntities">
+    <EntitySetMapping Name="Jenis_Pakaian">
+      <EntityTypeMapping TypeName="loundryModel.Jenis_Pakaian">
+        <MappingFragment StoreEntitySet="Jenis_Pakaian">
+          <ScalarProperty Name="ID_Jenis_Pakaian" ColumnName="ID_Jenis_Pakaian" />
+          <ScalarProperty Name="Nama_Pakaian" ColumnName="Nama_Pakaian" />
+          <ScalarProperty Name="Harga" ColumnName="Harga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Loundries">
+      <EntityTypeMapping TypeName="loundryModel.Loundry">
+        <MappingFragment StoreEntitySet="Loundry">
+          <ScalarProperty Name="ID_Loundry" ColumnName="ID_Loundry" />
+          <ScalarProperty Name="Tgl_Masuk" ColumnName="Tgl_Masuk" />
+          <ScalarProperty Name="Tgl_Keluar" ColumnName="Tgl_Keluar" />
+          <ScalarProperty Name="Berat" ColumnName="Berat" />
+          <ScalarProperty Name="ID_Pelanggan" ColumnName="ID_Pelanggan" />
+          <ScalarProperty Name="ID_Jenis_Pakaian" ColumnName="ID_Jenis_Pakaian" />
+          <ScalarProperty Name="ID_Pewangi" ColumnName="ID_Pewangi" />
+          <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pakets">
+      <EntityTypeMapping TypeName="loundryModel.Paket">
+        <MappingFragment StoreEntitySet="Paket">
+          <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+          <ScalarProperty Name="Nama_Paket" ColumnName="Nama_Paket" />
+          <ScalarProperty Name="Harga" ColumnName="Harga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pelanggans">
+      <EntityTypeMapping TypeName="loundryModel.Pelanggan">
+        <MappingFragment StoreEntitySet="Pelanggan">
+          <ScalarProperty Name="ID_Pelanggan" ColumnName="ID_Pelanggan" />
+          <ScalarProperty Name="nama_pelanggan" ColumnName="nama_pelanggan" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pewangis">
+      <EntityTypeMapping TypeName="loundryModel.Pewangi">
+        <MappingFragment StoreEntitySet="Pewangi">
+          <ScalarProperty Name="ID_Pewangi" ColumnName="ID_Pewangi" />
+          <ScalarProperty Name="Nama_Pewangi" ColumnName="Nama_Pewangi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

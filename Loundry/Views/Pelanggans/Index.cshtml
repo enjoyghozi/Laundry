@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Loundry.Models.Pelanggan>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Material_Lite.cshtml";
+    ViewBag.Title = "Pelanggan";
+}
+
+<h2>Data Pelanggan</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nama Pelanggan")
+        </th>
+        <th>
+            @Html.DisplayName("Alamat")
+        </th>
+        <th>
+            @Html.DisplayName("No Hp")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nama_pelanggan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alamat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.no_hp)
+        </td>
+        <td>
+            @Html.ActionLink("Ubah", "Edit", new { id=item.ID_Pelanggan }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Pelanggan }) |
+            @Html.ActionLink("Hapus", "Delete", new { id=item.ID_Pelanggan })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,26 @@
+﻿@model Loundry.Models.Pewangi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pewangi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nama_Pewangi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nama_Pewangi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Pewangi }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

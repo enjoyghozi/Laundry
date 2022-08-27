@@ -1,0 +1,34 @@
+﻿@model Loundry.Models.Jenis_Pakaian
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Jenis Pakaian</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Jenis Pakaian")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nama_Pakaian)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Harga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Harga)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Ubah", "Edit", new { id = Model.ID_Jenis_Pakaian }) |
+    @Html.ActionLink("Kembali ke daftar", "Index")
+</p>
